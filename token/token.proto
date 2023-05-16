@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package token;
+
+
+option go_package = "./";
+
+message Token {
+    string id = 1;
+    string name = 2;
+    uint64 low = 3;
+    uint64 mid = 4;
+    uint64 high = 5;
+    uint64 partial_value = 6;
+    uint64 final_value = 7;
+}
+
+service TokenService {
+    rpc CreateToken(Token) returns (TokenResponse) {}
+    rpc DropToken(Token) returns (TokenResponse) {}
+    rpc WriteToken(Token) returns (TokenResponse) {}
+    rpc ReadToken(Token) returns (TokenResponse) {}
+}
+
+message TokenResponse {
+    string message = 1;
+    repeated Token tokens = 2;
+}
